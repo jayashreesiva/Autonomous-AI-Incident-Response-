@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Security Log Analyzer</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: #111827;
+}
+
+header {
+    background: #1e293b;
+    color: white;
+    padding: 28px 20px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header p {
+    color: #cbd5e1;
+}
+
+.container {
+    max-width: 850px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.box {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.box h2 {
+    color: #2563eb;
+}
+
+.explanation {
+    background: #eff6ff;
+    padding: 18px;
+    border-radius: 10px;
+    line-height: 1.6;
+}
+
+.file-area {
+    margin-top: 25px;
+    padding: 30px;
+    border: 2px dashed #2563eb;
+    border-radius: 12px;
+    text-align: center;
+}
+
+input[type="file"] {
+    width: 100%;
+    padding: 10px;
+}
+
+button {
+    margin-top: 20px;
+    padding: 13px 25px;
+    border: none;
+    border-radius: 8px;
+    background: #2563eb;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+#analysis {
+    display: none;
+    margin-top: 30px;
+    padding: 25px;
+    background: #fee2e2;
+    border-left: 7px solid #dc2626;
+    border-radius: 10px;
+}
+
+.high {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.medium {
+    color: #d97706;
+    font-weight: bold;
+}
+
+.action {
+    background: #dbeafe;
+    padding: 18px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.report-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 12px 20px;
+    background: #2563eb;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 25px;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<h1>🔍 Security Log Analyzer</h1>
+
+<p>Autonomous AI Incident Responder</p>
+
+</header>
+
+
+<div class="container">
+
+<div class="box">
+
+<h2>📁 Analyze Security Logs</h2>
+
+
+<div class="explanation">
+
+<strong>Why is a file uploaded?</strong>
+
+<p>
+In a real organization, servers and cloud systems
+continuously generate security logs. These logs
+contain information about events such as login
+attempts, access requests and system activity.
+</p>
+
+<p>
+The Autonomous AI Incident Responder analyzes
+these logs to identify suspicious activity and
+classify possible security incidents.
+</p>
+
+</div>
+
+
+<div class="file-area">
+
+<h3>Upload Security Log</h3>
+
+<p>
+Supported formats: TXT, LOG, CSV
+</p>
+
+<input
+type="file"
+id="logFile"
+accept=".txt,.log,.csv"
+>
+
+<br>
+
+<button onclick="analyzeLog()">
+
+🤖 Analyze Security Log
+
+</button>
+
+</div>
+
+
+<div id="analysis">
+
+<h2>🚨 Security Incident Detected</h2>
+
+<p>
+<strong>Attack Type:</strong>
+Brute Force Attack
+</p>
+
+<p>
+<strong>Severity:</strong>
+<span class="high">HIGH</span>
+</p>
+
+<p>
+<strong>Detection Source:</strong>
+Cloud Security Log
+</p>
+
+<p>
+<strong>AI Analysis:</strong>
+Multiple failed login attempts were detected
+within a short period. The system classified
+the activity as a possible brute force attack.
+</p>
+
+
+<div class="action">
+
+<h3>🤖 Recommended Response</h3>
+
+<p>
+Investigate the affected account, review the
+source of the login attempts and apply appropriate
+security controls.
+</p>
+
+</div>
+
+
+<a
+href="report.html"
+class="report-button"
+>
+
+📄 View Incident Report
+
+</a>
+
+</div>
+
+
+<a
+href="monitoring.html"
+class="back"
+>
+
+← Back to AI Monitoring
+
+</a>
+
+<br>
+
+<a
+href="dashboard.html"
+class="back"
+>
+
+← Back to Dashboard
+
+</a>
+
+</div>
+
+</div>
+
+
+<script>
+
+function analyzeLog() {
+
+    const file =
+        document.getElementById("logFile").files[0];
+
+    if (!file) {
+
+        alert("Please select a security log file first.");
+
+        return;
+
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+
+        const logText = event.target.result;
+
+        // Send the log to our incident-analysis engine
+        const result = analyzeSecurityLog(logText);
+
+        // Display the result
+        const analysis =
+            document.getElementById("analysis");
+
+        analysis.style.display = "block";
+
+        analysis.innerHTML = `
+
+            <h2>🚨 Security Incident Detected</h2>
+
+            <p>
+                <strong>Attack Type:</strong>
+                ${result.attackType}
+            </p>
+
+            <p>
+                <strong>Severity:</strong>
+                <span class="high">
+                    ${result.severity}
+                </span>
+            </p>
+
+            <p>
+                <strong>Detection Source:</strong>
+                Security Log Analysis
+            </p>
+
+            <p>
+                <strong>AI Analysis:</strong>
+                ${result.analysis}
+            </p>
+
+            <div class="action">
+
+                <h3>🤖 Recommended Response</h3>
+
+                <p>
+                    ${result.response}
+                </p>
+
+            </div>
+
+            <a
+                href="report.html"
+                class="report-button"
+            >
+                📄 View Incident Report
+            </a>
+
+        `;
+
+        analysis.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    };
+
+    reader.readAsText(file);
+
+} 
+
+</script>
+
+<script src="js/backend.js"></script>
+</body>
+
+</html>

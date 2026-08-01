@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Incident Report</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+}
+
+header {
+    background: #1e293b;
+    padding: 20px;
+    text-align: center;
+}
+
+.report {
+    max-width: 600px;
+    margin: 30px auto;
+    background: white;
+    color: #111827;
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.report h2 {
+    text-align: center;
+    color: #2563eb;
+}
+
+.info {
+    margin: 15px 0;
+    padding: 15px;
+    background: #f1f5f9;
+    border-radius: 8px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.high {
+    color: #dc2626;
+    font-weight: bold;
+}
+
+.medium {
+    color: #d97706;
+    font-weight: bold;
+}
+
+.low {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.status {
+    color: #16a34a;
+    font-weight: bold;
+}
+
+.action {
+    background: #dbeafe;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    margin: 10px 5px;
+    cursor: pointer;
+}
+
+.buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<h1>🚨 Incident Report</h1>
+
+<p>Autonomous AI Incident Responder</p>
+
+</header>
+
+<div class="report">
+
+<h2>Security Incident Report</h2>
+
+<div class="info">
+
+<p>
+<span class="label">Incident ID:</span>
+AIR-001
+</p>
+
+<p>
+<span class="label">Attack Type:</span>
+<span id="attackType">Loading...</span>
+</p>
+
+<p>
+<span class="label">Severity:</span>
+<span id="severity">Loading...</span>
+</p>
+
+<p>
+<span class="label">Detection Source:</span>
+Security Log Analysis
+</p>
+
+<p>
+<span class="label">Status:</span>
+<span class="status">Resolved</span>
+</p>
+
+</div>
+
+<div class="action">
+
+<h3>🤖 AI Analysis</h3>
+
+<p id="analysis">
+Loading incident analysis...
+</p>
+
+<h3>Recommended Response</h3>
+
+<p id="response">
+Loading recommended response...
+</p>
+
+</div>
+
+<div class="buttons">
+
+<button onclick="window.print()">
+🖨 Print Report
+</button>
+
+<a href="dashboard.html">
+<button>
+⬅ Dashboard
+</button>
+</a>
+
+</div>
+
+</div>
+
+<script>
+
+const attack =
+localStorage.getItem("incidentType") ||
+"Unknown Incident";
+
+const severity =
+localStorage.getItem("incidentSeverity") ||
+"LOW";
+
+const analysis =
+localStorage.getItem("incidentAnalysis") ||
+"No analysis available.";
+
+const response =
+localStorage.getItem("incidentResponse") ||
+"No response recommendation available.";
+
+document.getElementById("attackType").textContent = attack;
+
+const severityElement =
+document.getElementById("severity");
+
+severityElement.textContent = severity;
+
+if (severity === "HIGH" || severity === "CRITICAL") {
+    severityElement.className = "high";
+}
+else if (severity === "MEDIUM") {
+    severityElement.className = "medium";
+}
+else {
+    severityElement.className = "low";
+}
+
+document.getElementById("analysis").textContent = analysis;
+
+document.getElementById("response").textContent = response;
+
+</script>
+
+</body>
+</html>

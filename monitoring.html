@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI Monitoring</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: #111827;
+}
+
+header {
+    background: #1e293b;
+    color: white;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 30px;
+}
+
+header p {
+    color: #cbd5e1;
+}
+
+.container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.monitor-box {
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.monitor-icon {
+    font-size: 55px;
+}
+
+.monitor-box h2 {
+    color: #2563eb;
+}
+
+.status {
+    display: inline-block;
+    margin: 15px 0;
+    padding: 10px 20px;
+    background: #dcfce7;
+    color: #166534;
+    border-radius: 25px;
+    font-weight: bold;
+}
+
+.monitor-button {
+    padding: 14px 25px;
+    background: #16a34a;
+    color: white;
+    border: none;
+    border-radius: 9px;
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.monitor-button:hover {
+    background: #15803d;
+}
+
+.events {
+    margin-top: 30px;
+    text-align: left;
+}
+
+.event {
+    background: #f1f5f9;
+    padding: 18px;
+    margin: 12px 0;
+    border-radius: 10px;
+    border-left: 6px solid #16a34a;
+}
+
+.warning {
+    border-left-color: #f59e0b;
+}
+
+.danger {
+    border-left-color: #dc2626;
+}
+
+.event strong {
+    color: #1e293b;
+}
+
+#message {
+    margin-top: 20px;
+    font-weight: bold;
+    color: #2563eb;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 25px;
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+    <h1>🤖 AI Incident Monitoring</h1>
+
+    <p>Autonomous Cloud Security Monitoring System</p>
+
+</header>
+
+
+<div class="container">
+
+
+    <div class="monitor-box">
+
+        <div class="monitor-icon">
+            🤖
+        </div>
+
+        <h2>Continuous Security Monitoring</h2>
+
+        <p>
+            The AI system continuously monitors
+            security events and identifies suspicious
+            activities in the cloud environment.
+        </p>
+
+
+        <div class="status" id="status">
+
+            🟢 Monitoring Active
+
+        </div>
+
+
+        <br>
+
+
+        <button
+            class="monitor-button"
+            onclick="scanSystem()"
+        >
+
+            🔍 Scan Security Events
+
+        </button>
+
+
+        <div id="message"></div>
+
+
+        <div class="events">
+
+            <h2>Recent Security Events</h2>
+
+
+            <div class="event">
+
+                🟢
+                <strong>Normal Activity</strong>
+
+                <p>
+                    Cloud server operating normally.
+                </p>
+
+            </div>
+
+
+            <div class="event warning">
+
+                🟠
+                <strong>Suspicious Activity</strong>
+
+                <p>
+                    Multiple login attempts detected.
+                </p>
+
+            </div>
+
+
+            <div class="event danger">
+
+                🔴
+                <strong>High Risk Incident</strong>
+
+                <p>
+                    Possible brute force attack detected.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <a
+            href="upload.html"
+            class="back"
+        >
+
+            📁 Go to Log Analyzer
+
+        </a>
+
+        <br>
+
+        <a
+            href="dashboard.html"
+            class="back"
+        >
+
+            ← Back to Dashboard
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function scanSystem() {
+
+    const message =
+        document.getElementById("message");
+
+    const status =
+        document.getElementById("status");
+
+    message.innerHTML =
+        "🔍 AI is analyzing security events...";
+
+    status.innerHTML =
+        "🟡 Analysis in progress";
+
+    setTimeout(function() {
+
+        message.innerHTML =
+            "🚨 Suspicious activity detected! AI analysis completed.";
+
+        status.innerHTML =
+            "🔴 Incident Detected";
+
+    }, 2000);
+
+}
+
+</script>
+
+
+</body>
+
+</html>
