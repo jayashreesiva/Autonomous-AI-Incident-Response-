@@ -73,6 +73,7 @@ Generates a structured report containing:
 - Incident Status
 
 ---
+link https://jayashreesiva.github.io/Cloud-based-intership-system-/admin.html
 
 ## 🔄 System Workflow
 
